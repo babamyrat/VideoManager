@@ -6,7 +6,7 @@ import retrofit2.http.POST;
 
 public interface UserService {
    @POST("token-auth/")
-   Call<LoginRequest> userLogin(@Body LoginRequest loginRequest);
+   Call<LoginResponse> userLogin(@Body LoginRequest loginRequest);
 
 
 }

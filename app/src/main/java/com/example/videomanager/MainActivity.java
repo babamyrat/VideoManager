@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         loginRequestCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()){
+
+                }
 
             }
 
