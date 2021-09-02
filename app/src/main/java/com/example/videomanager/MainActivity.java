@@ -2,10 +2,13 @@ package com.example.videomanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.videomanager.login.ApiClient;
@@ -19,54 +22,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextInputEditText username, password;
-    MaterialButton btnLogin;
+TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        btnLogin = findViewById(R.id.btnLogin);
+        username = findViewById(R.id.usernames);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
-                    Toast.makeText(MainActivity.this, "Парол или пароль пустой", Toast.LENGTH_SHORT).show();
-                } else {
-                    //proceed to login
-                }
-            }
-        });
+        Intent intent = getIntent();
+        if (intent.getExtras() != null){
+            String passedUsername = intent.getStringExtra("data");
+            username.setText("Welcome"+passedUsername);
 
-
-    }
-
-    public void login(){
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername(username.getText().toString());
-        loginRequest.setPassword(password.getText().toString());
-
-        Call<LoginResponse> loginRequestCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginRequestCall.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful()){
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-
-            }
-        });
-
+        }
 
     }
 }

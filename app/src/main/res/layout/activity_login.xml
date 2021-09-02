@@ -68,10 +68,11 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/username"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
+                    android:textColor="@color/black"
                     android:background="@drawable/background_fon_edit"
                     android:drawableLeft="@drawable/ic_email"
                     android:hint=" Электронная почта"
@@ -83,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
+                    android:textColor="@color/black"
                     android:background="@drawable/background_fon_edit"
                     android:drawableLeft="@drawable/ic_lock"
                     android:hint=" Пароль"
