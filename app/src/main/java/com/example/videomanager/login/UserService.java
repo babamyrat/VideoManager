@@ -9,5 +9,4 @@ public interface UserService {
    @POST("token-auth/")
    @Headers("accept: application/json")
    Call<LoginResponse> userLogin(@Body LoginRequest loginRequest);
-
 }

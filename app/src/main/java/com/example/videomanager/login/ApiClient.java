@@ -15,7 +15,7 @@ public class ApiClient {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://connect.garpix.com/api/v1/")
+                .baseUrl("https://connect.garpix.com/api/v1/")
                 .client(okHttpClient)
                 .build();
 

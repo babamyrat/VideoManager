@@ -32,11 +32,10 @@ TextView username;
         username = findViewById(R.id.usernames);
 
         Intent intent = getIntent();
-        if (intent.getExtras() != null){
-            String passedUsername = intent.getStringExtra("data");
-            username.setText("Welcome"+passedUsername);
-
-        }
+//        if (intent.getExtras() != null){
+//            String passedUsername = intent.getStringExtra("data");
+//            username.setText("Welcome"+passedUsername);
+//        }
 
     }
 }

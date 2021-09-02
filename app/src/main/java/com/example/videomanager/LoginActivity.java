@@ -20,7 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    TextInputEditText email, password;
+    TextInputEditText username, password;
     MaterialButton btnLogin;
 
     @Override
@@ -28,14 +28,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = findViewById(R.id.email);
+        username = findViewById(R.id.email);
         password = findViewById(R.id.password);
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
+                if (TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
                     Toast.makeText(LoginActivity.this, "Парол или пароль пустой", Toast.LENGTH_SHORT).show();
                 } else {
                     //proceed to login
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(){
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail(email.getText().toString());
+        loginRequest.setUsername(username.getText().toString());
         loginRequest.setPassword(password.getText().toString());
 
         Call<LoginResponse> loginRequestCall = ApiClient.getUserService().userLogin(loginRequest);
@@ -61,7 +61,9 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                         startActivity(new Intent(LoginActivity.this, MainActivity.class).putExtra("data", loginResponse.getEmail()));
+                         startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                                 //.putExtra("data", loginResponse.getUsername())
+                         );
                         }
                     }, 700);
 
