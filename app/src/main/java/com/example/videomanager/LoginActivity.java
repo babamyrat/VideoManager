@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.videomanager.login.ApiClient;
 import com.example.videomanager.login.LoginRequest;
 import com.example.videomanager.login.LoginResponse;
+import com.example.videomanager.model.LoginToken;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -40,32 +41,58 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     //proceed to login
                     login();
+
                 }
             }
         });
     }
 
+    public void getUserInfo(String token) {
+      Call<LoginResponse> userInfo = ApiClient.getUserService().userMe("Token " + token );
+      userInfo.enqueue(new Callback<LoginResponse>() {
+          @Override
+          public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+              if (response.isSuccessful()) {
+                  new Handler().postDelayed(new Runnable() {
+                      @Override
+                      public void run() {
+
+                          LoginResponse loginResponse = response.body();
+                          Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                          intent.putExtra("data", loginResponse.getEmail());
+                          intent.putExtra("data1", loginResponse.getAvatar());
+                          startActivity(intent);
+
+//                          startActivity(new Intent(LoginActivity.this, MainActivity.class)
+//                                  .putExtra("data", loginResponse.getEmail())
+//                          );
+                      }
+                  }, 700);
+              }
+          }
+
+          @Override
+          public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+          }
+      });
+    }
+
+    private static String token;
     public void login(){
+
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username.getText().toString());
         loginRequest.setPassword(password.getText().toString());
 
-        Call<LoginResponse> loginRequestCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginRequestCall.enqueue(new Callback<LoginResponse>() {
+        Call<LoginToken> loginRequestCall = ApiClient.getUserService().userLogin(loginRequest);
+        loginRequestCall.enqueue(new Callback<LoginToken>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<LoginToken> call, Response<LoginToken> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    LoginResponse loginResponse = response.body();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                         startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                                 .putExtra("data", loginResponse.getUsername())
-                         );
-                        }
-                    }, 700);
+                    Toast.makeText(LoginActivity.this, "Login Successful"+token, Toast.LENGTH_SHORT).show();
+                    token = response.body().getToken();
+                    getUserInfo(token);
 
                 }
 
@@ -73,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<LoginToken> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Throwable"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
 

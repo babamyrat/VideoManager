@@ -1,4 +1,4 @@
-package com.example.videomanager.login;
+package com.example.videomanager.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
