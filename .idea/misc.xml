@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nurana/AndroidStudioProjects/VideoManager/app/src/main/res/drawable/background_fon_edit.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nurana/AndroidStudioProjects/VideoManager/app/src/main/res/drawable/ic_down.xml" value="0.2703125" />
+        <entry key="..\:/Users/Nurana/AndroidStudioProjects/VideoManager/app/src/main/res/layout/activity_expectation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nurana/AndroidStudioProjects/VideoManager/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/Nurana/AndroidStudioProjects/VideoManager/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tmtal/AndroidStudioProjects/VideoManager/app/src/main/res/drawable/background_fon_button.xml" value="0.2890625" />
         <entry key="..\:/Users/tmtal/AndroidStudioProjects/VideoManager/app/src/main/res/drawable/background_fon_edit.xml" value="0.2890625" />
         <entry key="..\:/Users/tmtal/AndroidStudioProjects/VideoManager/app/src/main/res/drawable/ic_email.xml" value="0.2890625" />

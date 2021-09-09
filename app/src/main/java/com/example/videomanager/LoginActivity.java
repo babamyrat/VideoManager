@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void run() {
 
                          startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                                 //.putExtra("data", loginResponse.getUsername())
+                                 .putExtra("data", loginResponse.getUsername())
                          );
                         }
                     }, 700);
