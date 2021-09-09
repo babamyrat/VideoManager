@@ -1,6 +1,7 @@
 package com.example.videomanager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -26,8 +28,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-TextView username;
+private TextView username;
 private ImageView imageView;
+private CardView cardView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ private ImageView imageView;
 
         username = findViewById(R.id.usernames);
         imageView = findViewById(R.id.imageIcon);
+        cardView = findViewById(R.id.cardClick);
+
 
         Intent intent = getIntent();
         if (intent.getExtras() != null){
@@ -45,15 +51,20 @@ private ImageView imageView;
 
             String image = intent.getStringExtra("data1");
 
-//            Glide.with(this)
-//                    .load(image)
-//                    .into(imageView);
-
             Glide.with(this).load(image)
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_background)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
                     .into(imageView);
         }
 
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(MainActivity.this, CallViewActivity.class);
+                startActivity(intent1);
+            }
+        });
     }
+
 }

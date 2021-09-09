@@ -71,6 +71,7 @@
         android:layout_margin="20dp"
         >
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardClick"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="8dp"

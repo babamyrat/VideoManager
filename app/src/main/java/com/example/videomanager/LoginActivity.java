@@ -63,9 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                           intent.putExtra("data1", loginResponse.getAvatar());
                           startActivity(intent);
 
-//                          startActivity(new Intent(LoginActivity.this, MainActivity.class)
-//                                  .putExtra("data", loginResponse.getEmail())
-//                          );
+
                       }
                   }, 700);
               }
