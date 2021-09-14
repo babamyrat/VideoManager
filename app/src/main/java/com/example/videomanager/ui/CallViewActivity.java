@@ -1,8 +1,10 @@
-package com.example.videomanager;
+package com.example.videomanager.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.videomanager.R;
 
 public class CallViewActivity extends AppCompatActivity {
 

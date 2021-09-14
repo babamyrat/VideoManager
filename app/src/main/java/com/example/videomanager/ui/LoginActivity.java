@@ -1,4 +1,4 @@
-package com.example.videomanager;
+package com.example.videomanager.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.videomanager.R;
 import com.example.videomanager.login.ApiClient;
 import com.example.videomanager.login.LoginRequest;
 import com.example.videomanager.login.LoginResponse;
@@ -23,6 +24,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText username, password;
     MaterialButton btnLogin;
+    private static String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                           Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                           intent.putExtra("data", loginResponse.getEmail());
                           intent.putExtra("data1", loginResponse.getAvatar());
+                          intent.putExtra("token", token);
                           startActivity(intent);
 
 
@@ -76,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
       });
     }
 
-    private static String token;
+
     public void login(){
 
         LoginRequest loginRequest = new LoginRequest();
