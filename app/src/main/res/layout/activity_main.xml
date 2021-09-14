@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fon_image"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.MainActivity"
+    tools:layout_editor_absoluteX="-50dp"
+    tools:layout_editor_absoluteY="-81dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="30dp"
-        app:cardBackgroundColor="@color/white"
         android:layout_marginStart="30dp"
         android:layout_marginTop="-20dp"
         android:layout_marginEnd="30dp"
-        >
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,37 +30,56 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/container_top"
-                android:layout_width="match_parent"
+                android:layout_width="309dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/exConstrain"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="2"
+                    android:text="name"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    app:layout_constraintEnd_toStartOf="@+id/imageIcon"
+                    app:layout_constraintHorizontal_bias="0.91"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/usernames"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="2"
                     android:text="garpix@gmail.com"
                     android:textColor="@color/black"
                     android:textSize="17dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@+id/imageIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/txtName"
+                    app:layout_constraintVertical_bias="0.111" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageIcon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center|right"
-                    android:layout_marginStart="40dp"
                     android:layout_weight="1"
                     android:src="@drawable/icon"
-                    app:civ_border_width="2dp"
                     app:civ_border_color="#FFFFFFFF"
+                    app:civ_border_width="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/usernames"
+                    app:layout_constraintEnd_toStartOf="@+id/btnClick"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -74,18 +94,18 @@
                     app:iconTint="#000000"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imageIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/exConstrain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/container_top">
 
@@ -93,32 +113,49 @@
                     android:id="@+id/divider"
                     android:layout_width="309dp"
                     android:layout_height="1dp"
-                    android:background="#a6a6a6"
                     android:layout_marginTop="10dp"
+                    android:background="#a6a6a6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/txtExit"
+                <LinearLayout
+                    android:id="@+id/exitLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="12dp"
-                    android:text="Exit"
-                    android:textSize="24dp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/holo_red_dark"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/divider" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
+                        android:layout_gravity="center"
+                        android:layout_margin="7dp"
+                        android:src="@drawable/ic_exit" />
+
+                    <TextView
+                        android:id="@+id/txtExit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="7dp"
+                        android:text="Выйти"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </androidx.cardview.widget.CardView>
@@ -127,42 +164,38 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardBackgroundColor="@color/teal_200"
-        app:cardCornerRadius="30dp"
         android:layout_margin="20dp"
-        >
+        app:cardBackgroundColor="#E9EDF5"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardClick"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="8dp"
-            app:cardCornerRadius="30dp"
-            app:cardBackgroundColor="@color/white"
-            >
+            app:cardBackgroundColor="#34BC40"
+            app:cardCornerRadius="30dp">
 
             <TextView
                 android:id="@+id/imageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Click Call!"
-                android:textSize="24dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:shadowRadius="30"
-                android:background="@color/white"
-                android:textColor="@color/black"
+                android:background="#34BC40"
                 android:gravity="center"
-                />
+                android:shadowRadius="30"
+                android:text="@string/call_get"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
 
     </androidx.cardview.widget.CardView>
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

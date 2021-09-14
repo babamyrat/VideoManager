@@ -14,6 +14,7 @@ import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +23,14 @@ import com.example.videomanager.R;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
-private TextView username;
+private TextView username, first_name;
 private ImageView imageView;
 private CardView cardView, cardClick;
 private MaterialButton button;
 private ConstraintLayout exConstrain;
 private SharedPreferences pref;
 private final String save_key = "KEY";
-private TextView txtClickClear;
+private LinearLayout exitLayout;
 
 
     @Override
@@ -39,17 +40,18 @@ private TextView txtClickClear;
 
 
         username = findViewById(R.id.usernames);
+        first_name = findViewById(R.id.txtName);
         imageView = findViewById(R.id.imageIcon);
         cardClick = findViewById(R.id.cardClick);
         button = findViewById(R.id.btnClick);
 
         cardView = findViewById(R.id.cardView);
         exConstrain = findViewById(R.id.exConstrain);
-        txtClickClear = findViewById(R.id.txtExit);
+        exitLayout = findViewById(R.id.exitLayout);
 
 
 
-        txtClickClear.setOnClickListener(new View.OnClickListener() {
+        exitLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //alert Dialog yes or no
@@ -86,12 +88,16 @@ private TextView txtClickClear;
             String passedUsername = intent.getStringExtra("data");
             username.setText(passedUsername);
 
-            String image = intent.getStringExtra("data1");
+            String name = intent.getStringExtra("data2");
+            first_name.setText(name);
 
+            String image = intent.getStringExtra("data1");
             Glide.with(this).load(image)
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
                     .into(imageView);
+
+
 
             String token = intent.getStringExtra("token");
 

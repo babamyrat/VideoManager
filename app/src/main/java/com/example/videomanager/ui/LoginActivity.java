@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                           Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                           intent.putExtra("data", loginResponse.getEmail());
                           intent.putExtra("data1", loginResponse.getAvatar());
+                          intent.putExtra("data2", loginResponse.getFirstName());
                           intent.putExtra("token", token);
                           startActivity(intent);
 

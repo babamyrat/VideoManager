@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN_TIME_OUT=2000;
+    private static int SPLASH_SCREEN_TIME_OUT=1000;
 
     private SharedPreferences pref;
     private final String save_key = "KEY";
@@ -29,8 +29,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+          //full screen View
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //GET
         pref = getSharedPreferences("Test", MODE_PRIVATE);
@@ -71,6 +72,7 @@ public class SplashActivity extends AppCompatActivity {
                             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                             intent.putExtra("data", loginResponse.getEmail());
                             intent.putExtra("data1", loginResponse.getAvatar());
+                            intent.putExtra("data2", loginResponse.getFirstName());
                             intent.putExtra("token", token);
                             startActivity(intent);
 
