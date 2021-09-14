@@ -1,15 +1,18 @@
 package com.example.videomanager.ui;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +48,36 @@ private TextView txtClickClear;
         txtClickClear = findViewById(R.id.txtExit);
 
 
+
+        txtClickClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //alert Dialog yes or no
+                 new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Выйти из аккаунта!")
+                        .setMessage("Вы действительно хотите выйти из аккаунта?")
+                        .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //View Display
+                                Toast.makeText(MainActivity.this, "Выйти из аккаунта!", Toast.LENGTH_SHORT).show();
+
+                                //SET SharedPreferences
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putString(save_key,"");
+                                editor.apply();
+
+                                Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent1);
+
+                            }
+                        })
+                        .setNegativeButton("Нет", null)
+                        .show();
+
+            }
+        });
+
         //group
         init();
 
@@ -69,22 +102,6 @@ private TextView txtClickClear;
 
         }
 
-        txtClickClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //SET SharedPreferences
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString(save_key,"");
-                editor.apply();
-
-                Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent1);
-
-            }
-        });
-
-
-
 
         // click button down and up
         button.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +114,7 @@ private TextView txtClickClear;
                 } else {
                     TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                     exConstrain.setVisibility(View.GONE);
-                    button.setBackgroundResource(R.drawable.ic__up);
+                    button.setBackgroundResource(R.drawable.ic_up);
                 }
             }
         });

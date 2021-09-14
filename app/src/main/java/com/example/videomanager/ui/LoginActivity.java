@@ -22,8 +22,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    TextInputEditText username, password;
-    MaterialButton btnLogin;
+    private TextInputEditText username, password;
+    private MaterialButton btnLogin;
     private static String token;
 
     @Override
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginToken> call, Response<LoginToken> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Login Successful"+token, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     token = response.body().getToken();
                     getUserInfo(token);
 
