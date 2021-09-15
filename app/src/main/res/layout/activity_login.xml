@@ -30,7 +30,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgIcon" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="264dp"
+        android:visibility="gone"
+        />
+
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -77,6 +90,7 @@
                     android:drawableLeft="@drawable/ic_email"
                     android:hint=" Электронная почта"
                     android:textColorHint="#C9CCE2"
+                    app:errorEnabled="true"
                     android:text="qa"
                     android:paddingLeft="10dp" />
 
@@ -92,6 +106,8 @@
                     android:text="jeka2020"
                     android:textColorHint="#C9CCE2"
                     android:inputType="textPassword"
+                    app:endIconMode="password_toggle"
+                    app:errorEnabled="true"
                     android:paddingLeft="10dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -113,5 +129,7 @@
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
