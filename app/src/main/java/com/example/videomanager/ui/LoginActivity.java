@@ -3,10 +3,12 @@ package com.example.videomanager.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.videomanager.R;
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText username, password;
     private MaterialButton btnLogin;
     private static String token;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,24 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.email);
         password = findViewById(R.id.password);
         btnLogin = findViewById(R.id.btnLogin);
+        progressBar = findViewById(R.id.progressBar);
+
+
+        username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                username.setTextColor(Color.BLACK);
+                password.setTextColor(Color.BLACK);
+            }
+        });
+
+        password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                username.setTextColor(Color.BLACK);
+                password.setTextColor(Color.BLACK);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     //proceed to login
                     login();
+
+                    progressBar.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -55,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
           @Override
           public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
               if (response.isSuccessful()) {
+                  //progressBar.setVisibility(View.VISIBLE);
                   new Handler().postDelayed(new Runnable() {
                       @Override
                       public void run() {
@@ -95,6 +119,11 @@ public class LoginActivity extends AppCompatActivity {
                     //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     token = response.body().getToken();
                     getUserInfo(token);
+
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    username.setTextColor(Color.RED);
+                    password.setTextColor(Color.RED);
 
                 }
 

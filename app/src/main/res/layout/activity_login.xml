@@ -30,7 +30,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgIcon" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -44,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardCornerRadius="30dp"
             app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/garpixText"
             app:layout_constraintVertical_bias="0.238"
@@ -72,27 +82,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
-                    android:textColor="@color/black"
                     android:background="@drawable/background_fon_edit"
                     android:drawableLeft="@drawable/ic_email"
                     android:hint=" Электронная почта"
-                    android:textColorHint="#C9CCE2"
+                    android:paddingLeft="10dp"
                     android:text="qa"
-                    android:paddingLeft="10dp" />
+                    android:textColor="@color/black"
+                    android:textColorHint="#C9CCE2" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
-                    android:textColor="@color/black"
                     android:background="@drawable/background_fon_edit"
                     android:drawableLeft="@drawable/ic_lock"
                     android:hint=" Пароль"
-                    android:text="jeka2020"
-                    android:textColorHint="#C9CCE2"
                     android:inputType="textPassword"
-                    android:paddingLeft="10dp" />
+                    android:paddingLeft="10dp"
+                    android:text="jeka2020"
+                    android:textColor="@color/black"
+                    android:textColorHint="#C9CCE2" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
@@ -113,5 +123,7 @@
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
