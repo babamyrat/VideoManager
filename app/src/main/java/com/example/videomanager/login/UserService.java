@@ -1,5 +1,6 @@
 package com.example.videomanager.login;
 
+import com.example.videomanager.model.LoginCall;
 import com.example.videomanager.model.LoginToken;
 
 import retrofit2.Call;
@@ -16,4 +17,7 @@ public interface UserService {
 
    @GET("xrtc/user/me/")
    Call<LoginResponse> userMe(@Header("Authorization") String token);
+
+   @POST("xrtc/manager/set_device_id/")
+   Call<LoginCall> userCall(@Header("Authorization") String token);
 }

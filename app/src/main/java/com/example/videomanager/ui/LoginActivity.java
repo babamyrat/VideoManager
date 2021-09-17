@@ -15,7 +15,9 @@ import com.example.videomanager.R;
 import com.example.videomanager.login.ApiClient;
 import com.example.videomanager.login.LoginRequest;
 import com.example.videomanager.login.LoginResponse;
+import com.example.videomanager.model.LoginCall;
 import com.example.videomanager.model.LoginToken;
+import com.example.videomanager.push.FirebaseMessageReceiver;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -27,7 +29,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText username, password;
     private MaterialButton btnLogin;
     private static String token;
+    private static LoginCall tokenFirebase;
     private ProgressBar progressBar;
+    private LoginResponse loginResponse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString())){
-                    Toast.makeText(LoginActivity.this, "Парол или пароль пустой", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "пуст", Toast.LENGTH_SHORT).show();
                 } else {
                     //proceed to login
                     login();
@@ -102,6 +107,37 @@ public class LoginActivity extends AppCompatActivity {
 
           }
       });
+
+    }
+
+private final String firebaseToken = "sfasdfsdfaeefasdf";
+
+    private void sendTokenToServer(){
+        LoginCall loginCall = new LoginCall();
+        loginCall.setRegistrationToken("TokenFire");
+        loginCall.setManagerId(loginResponse.getManagerId());
+        loginCall.setType("Android");
+        Call<LoginCall> userCall = ApiClient.getUserService().userCall("Token " + token);
+        userCall.enqueue(new Callback<LoginCall>() {
+            @Override
+            public void onResponse(Call<LoginCall> call, Response<LoginCall> response) {
+
+                if (response.isSuccessful()) {
+
+                   LoginCall loginCall = response.body();
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginCall> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Throwable"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 
@@ -118,7 +154,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     token = response.body().getToken();
-                    getUserInfo(token);
+                   // getUserInfo(token);
+
 
                 } else {
                     progressBar.setVisibility(View.GONE);

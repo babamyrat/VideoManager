@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "960603767091",
+    "project_id": "video-manager-f19e3",
+    "storage_bucket": "video-manager-f19e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960603767091:android:36e3cb242f2ca68b8c7e46",
+        "android_client_info": {
+          "package_name": "com.example.videomanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960603767091-qoouc89rh1s3ohd9ppndptfjb3p7tve5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLUr7v8CFrWzdPewEdb7No8wTpqJXxvAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960603767091-qoouc89rh1s3ohd9ppndptfjb3p7tve5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "960603767091-62tqmcsbt4mvd4mkses40fg7kstht6rc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.garpix.videomanager"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
