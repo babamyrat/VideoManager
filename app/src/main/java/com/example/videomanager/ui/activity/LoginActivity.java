@@ -1,4 +1,4 @@
-package com.example.videomanager.ui;
+package com.example.videomanager.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,12 +12,15 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.videomanager.R;
-import com.example.videomanager.login.ApiClient;
-import com.example.videomanager.login.LoginRequest;
-import com.example.videomanager.login.LoginResponse;
-import com.example.videomanager.model.LoginCall;
-import com.example.videomanager.model.LoginToken;
+
+import com.example.videomanager.data.api.ApiClient;
+import com.example.videomanager.data.model.CallModel;
+import com.example.videomanager.data.model.InfoModel;
+import com.example.videomanager.data.model.SingModel;
+import com.example.videomanager.data.model.TokenModel;
+
 import com.example.videomanager.push.FirebaseMessageReceiver;
+import com.example.videomanager.ui.activity.MainActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -29,9 +32,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText username, password;
     private MaterialButton btnLogin;
     private static String token;
-    private static LoginCall tokenFirebase;
+    private static CallModel tokenFirebase;
     private ProgressBar progressBar;
-    private LoginResponse loginResponse;
+    private InfoModel loginResponse;
+    private FirebaseMessageReceiver messageReceiver;
 
 
     @Override
@@ -78,17 +82,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void getUserInfo(String token) {
-      Call<LoginResponse> userInfo = ApiClient.getUserService().userMe("Token " + token );
-      userInfo.enqueue(new Callback<LoginResponse>() {
+      Call<InfoModel> userInfo = ApiClient.getUserService().userMe("Token " + token );
+      userInfo.enqueue(new Callback<InfoModel>() {
           @Override
-          public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+          public void onResponse(Call<InfoModel> call, Response<InfoModel> response) {
               if (response.isSuccessful()) {
                   //progressBar.setVisibility(View.VISIBLE);
                   new Handler().postDelayed(new Runnable() {
                       @Override
                       public void run() {
 
-                          LoginResponse loginResponse = response.body();
+                          InfoModel loginResponse = response.body();
                           Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                           intent.putExtra("data", loginResponse.getEmail());
                           intent.putExtra("data1", loginResponse.getAvatar());
@@ -103,37 +107,36 @@ public class LoginActivity extends AppCompatActivity {
           }
 
           @Override
-          public void onFailure(Call<LoginResponse> call, Throwable t) {
+          public void onFailure(Call<InfoModel> call, Throwable t) {
 
           }
       });
 
     }
 
-private final String firebaseToken = "sfasdfsdfaeefasdf";
 
-    private void sendTokenToServer(){
-        LoginCall loginCall = new LoginCall();
-        loginCall.setRegistrationToken("TokenFire");
+    private void  sendTokenToServer(){
+        CallModel loginCall = new CallModel();
+        loginCall.setRegistrationToken(messageReceiver.sendTokenToServer(""));
         loginCall.setManagerId(loginResponse.getManagerId());
         loginCall.setType("Android");
-        Call<LoginCall> userCall = ApiClient.getUserService().userCall("Token " + token);
-        userCall.enqueue(new Callback<LoginCall>() {
+        Call<CallModel> userCall = ApiClient.getUserService().userCall("Token " + token);
+        userCall.enqueue(new Callback<CallModel>() {
             @Override
-            public void onResponse(Call<LoginCall> call, Response<LoginCall> response) {
+            public void onResponse(Call<CallModel> call, Response<CallModel> response) {
 
                 if (response.isSuccessful()) {
 
-                   LoginCall loginCall = response.body();
+                   CallModel loginCall = response.body();
 
 
 
                 }
-
             }
 
             @Override
-            public void onFailure(Call<LoginCall> call, Throwable t) {
+            public void onFailure(Call<CallModel> call, Throwable t) {
+
                 Toast.makeText(LoginActivity.this, "Throwable"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -143,18 +146,20 @@ private final String firebaseToken = "sfasdfsdfaeefasdf";
 
     public void login(){
 
-        LoginRequest loginRequest = new LoginRequest();
+        SingModel loginRequest = new SingModel();
         loginRequest.setUsername(username.getText().toString());
         loginRequest.setPassword(password.getText().toString());
 
-        Call<LoginToken> loginRequestCall = ApiClient.getUserService().userLogin(loginRequest);
-        loginRequestCall.enqueue(new Callback<LoginToken>() {
+        Call<TokenModel> loginRequestCall = ApiClient.getUserService().userLogin(loginRequest);
+        loginRequestCall.enqueue(new Callback<TokenModel>() {
+
             @Override
-            public void onResponse(Call<LoginToken> call, Response<LoginToken> response) {
+            public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
                 if (response.isSuccessful()){
                     //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     token = response.body().getToken();
-                   // getUserInfo(token);
+                    getUserInfo(token);
+                   // sendTokenToServer();
 
 
                 } else {
@@ -168,7 +173,7 @@ private final String firebaseToken = "sfasdfsdfaeefasdf";
 
 
             @Override
-            public void onFailure(Call<LoginToken> call, Throwable t) {
+            public void onFailure(Call<TokenModel> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Throwable"+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
 

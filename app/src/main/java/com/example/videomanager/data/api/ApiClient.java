@@ -1,4 +1,4 @@
-package com.example.videomanager.login;
+package com.example.videomanager.data.api;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

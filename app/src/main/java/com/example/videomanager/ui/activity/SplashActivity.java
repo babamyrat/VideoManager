@@ -1,4 +1,4 @@
-package com.example.videomanager.ui;
+package com.example.videomanager.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.example.videomanager.R;
-import com.example.videomanager.login.ApiClient;
-import com.example.videomanager.login.LoginResponse;
+import com.example.videomanager.data.api.ApiClient;
+import com.example.videomanager.data.model.InfoModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +30,8 @@ public class SplashActivity extends AppCompatActivity {
           //full screen View
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
 
         //GET
         pref = getSharedPreferences("Test", MODE_PRIVATE);
@@ -59,20 +59,20 @@ public class SplashActivity extends AppCompatActivity {
 
 
     public void getUserInfo(String token) {
-        Call<LoginResponse> userInfo = ApiClient.getUserService().userMe("Token " + token );
-        userInfo.enqueue(new Callback<LoginResponse>() {
+        Call<InfoModel> userInfo = ApiClient.getUserService().userMe("Token " + token );
+        userInfo.enqueue(new Callback<InfoModel>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<InfoModel> call, Response<InfoModel> response) {
                 if (response.isSuccessful()) {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
 
-                            LoginResponse loginResponse = response.body();
+                            InfoModel infoModel = response.body();
                             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                            intent.putExtra("data", loginResponse.getEmail());
-                            intent.putExtra("data1", loginResponse.getAvatar());
-                            intent.putExtra("data2", loginResponse.getFirstName());
+                            intent.putExtra("data", infoModel.getEmail());
+                            intent.putExtra("data1", infoModel.getAvatar());
+                            intent.putExtra("data2", infoModel.getFirstName());
                             intent.putExtra("token", token);
                             startActivity(intent);
 
@@ -82,7 +82,7 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<InfoModel> call, Throwable t) {
 
             }
         });

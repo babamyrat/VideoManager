@@ -1,6 +1,6 @@
-package com.example.videomanager.login;
+package com.example.videomanager.data.model;
 
-public class LoginRequest {
+public class SingModel {
     private String username;
     private String password;
 

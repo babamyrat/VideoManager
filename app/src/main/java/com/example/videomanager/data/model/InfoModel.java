@@ -1,9 +1,9 @@
-package com.example.videomanager.login;
+package com.example.videomanager.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
+public class InfoModel {
     @SerializedName("pk")
     @Expose
     private Integer pk;

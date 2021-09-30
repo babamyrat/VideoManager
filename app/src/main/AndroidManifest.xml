@@ -14,14 +14,14 @@
         android:theme="@style/Theme.VideoManager"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.CallViewActivity"
+            android:name=".ui.activity.CallViewActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +39,7 @@
         </service>
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true"/>
 
     </application>

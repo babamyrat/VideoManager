@@ -1,9 +1,9 @@
-package com.example.videomanager.model;
+package com.example.videomanager.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginToken {
+public class TokenModel {
     @SerializedName("token")
     @Expose
     private String token;

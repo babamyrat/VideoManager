@@ -1,4 +1,4 @@
-package com.example.videomanager.ui;
+package com.example.videomanager.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

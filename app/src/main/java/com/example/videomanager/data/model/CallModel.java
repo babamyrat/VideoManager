@@ -1,9 +1,9 @@
-package com.example.videomanager.model;
+package com.example.videomanager.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginCall {
+public class CallModel {
     @SerializedName("registration_token")
     @Expose
     private String registrationToken;

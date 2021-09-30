@@ -6,29 +6,22 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.example.videomanager.R;
-import com.example.videomanager.login.ApiClient;
-import com.example.videomanager.login.LoginResponse;
-import com.example.videomanager.model.LoginCall;
-import com.example.videomanager.ui.SplashActivity;
+import com.example.videomanager.ui.activity.SplashActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FirebaseMessageReceiver
         extends FirebaseMessagingService {
 
-    public void  sendTokenToServer(String token){
+    public String sendTokenToServer(String token){
 
+        return token;
     }
 
     // Override onMessageReceived() method to extract the
